@@ -1,6 +1,6 @@
 import {instanse} from "common/api";
 import {AxiosResponse} from "axios";
-import {UtilResponse} from "common/types/apiTypes";
+import { User, UtilResponse } from "common/types/apiTypes"
 
 
 export type Params = {
@@ -12,8 +12,8 @@ export type Params = {
 
 
 export const userAPI = {
-    users(count?:number, page?:number) {
-        return instanse.get<null, AxiosResponse<UtilResponse>, Params>('/users',)
+    users(params?:Params) {
+        return instanse.get<null, AxiosResponse<UtilResponse<User[]>>, Params>('/users',{params})
     }
 }
 

@@ -16,6 +16,7 @@ const login = createAppAsyncThunk<{ isLoggedIn: boolean }, LoginParams>("auth/lo
     return rejectWithValue({ data: res.data })
   }
 })
+
 const logOut = createAppAsyncThunk<{ isLoggedIn: boolean }, undefined>("auth/logOut", async (_, thunkAPI) => {
   const { dispatch, rejectWithValue } = thunkAPI
   const res = await authAPI.logout()
@@ -36,7 +37,7 @@ const slice = createSlice({
   name: "auth",
   initialState: {
     isLoggedIn: false,
-    captcha: null as null|string
+    captcha:null as null|string
   },
   reducers: {},
   extraReducers: (builder) => {

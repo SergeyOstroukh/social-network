@@ -23,11 +23,6 @@ export type User = {
     "uniqueUrlName": null | any
 };
 
-export type UserResponse = {
-    items: User[]
-    totalCount: number
-    error: null | string
-}
 
 type Contacts = {
     "facebook": null | string

@@ -6,12 +6,13 @@ import { useSelector } from "react-redux"
 import { AppRootStateType } from "app/store"
 import { useActions } from "common/hooks/useActions"
 import { authThunk } from "features/auth/modal/authSlice"
+import RedoOutlined from "@ant-design/icons/lib/icons/RedoOutlined"
 
 
 export const Login = () => {
-  const captcha = useSelector<AppRootStateType, null|string>(state => state.auth.captcha)
+  const captchaValue = useSelector<AppRootStateType, null|string>(state => state.auth.captcha)
 
-  const {login} = useActions(authThunk)
+  const {login, captcha} = useActions(authThunk)
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -27,7 +28,9 @@ export const Login = () => {
     width: 300,
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.4)" // Добавляем тень
   }
-
+  const updateCaptcha = ()=>{
+    captcha()
+  }
   return (
     <Card size="small" style={cardStyle}>
       <Form
@@ -55,16 +58,25 @@ export const Login = () => {
           <Input.Password {...formik.getFieldProps("password")} />
         </Form.Item>
 
-        {captcha &&
+        {captchaValue &&
           <Form.Item<LoginParams>
+
             label="captcha"
             rules={[{ required: true, message: "Please input Captcha!" }]}
           >
-            <img src={captcha} />
+
+            <div>
+              <img src={captchaValue} />
+              <span>update captcha</span>
+              <RedoOutlined onClick={updateCaptcha}/>
+            </div>
+
             <Input
               {...formik.getFieldProps("captcha")}
             />
           </Form.Item>
+
+
         }
 
 
