@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
 
     const arg = {
-      count: 2,
+      count: 1,
       page: 2
     }
     setUsers(arg)
@@ -23,8 +23,8 @@ function App() {
 
   return (
     <div>
-      <Login />
-
+      {/*<Login />*/}
+      <Users />
     </div>
   )
 }
